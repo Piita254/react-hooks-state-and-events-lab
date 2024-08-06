@@ -1,13 +1,24 @@
-import React from "react";
+// File path: src/components/Item.js
 
-function Item({ name, category }) {
+import React, { useState } from 'react';
+
+const Item = ({ name, category }) => {
+  const [inCart, setInCart] = useState(false);
+
+  const handleCartToggle = () => {
+    setInCart((prevInCart) => !prevInCart);
+  };
+
+  const itemClass = inCart ? "in-cart" : "";
+  const buttonText = inCart ? "Remove From Cart" : "Add to Cart";
+
   return (
-    <li className="">
+    <li className={itemClass}>
       <span>{name}</span>
       <span className="category">{category}</span>
-      <button className="add">Add to Cart</button>
+      <button onClick={handleCartToggle}>{buttonText}</button>
     </li>
   );
-}
+};
 
 export default Item;
